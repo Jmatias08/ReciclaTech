@@ -1,7 +1,5 @@
 package com.proyecto.reciclatech.service;
 
-package com.proyecto.reciclatech.service;
-
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.proyecto.reciclatech.db.MongoConnection;
@@ -84,7 +82,7 @@ public class UsuarioService {
         return null;
     }
 
-    // Validar logi
+    // Validar login
     public boolean validarLogin(String carnet, String password) {
         Usuario usuario = buscarPorCarnet(carnet);
 
