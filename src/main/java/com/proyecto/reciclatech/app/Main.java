@@ -31,7 +31,7 @@ public class Main extends Application {
         try {
             // Cargar FXML desde resources
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/proyecto/reciclatech/view/LoginView.fxml")
+                    getClass().getResource("/com/proyecto/reciclatech/view/RegisterView.fxml")
             );
 
             if (loader.getLocation() == null) {
