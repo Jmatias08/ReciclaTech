@@ -12,12 +12,14 @@
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
             <TextField fx:id="txtCarnet" layoutX="226.0" layoutY="70.0" />
-            <Button fx:id="btnRegistrarse" layoutX="264.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleRegister" text="Registrarse" />
+            <Button fx:id="btnRegistrarse" layoutX="263.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleRegister" text="Registrarse" />
             <Label fx:id="lblCarne" layoutX="286.0" layoutY="40.0" text="Carne" />
             <Label fx:id="lblCarrera" layoutX="284.0" layoutY="113.0" text="Carrera" />
             <ComboBox fx:id="cmbCarrera" layoutX="225.0" layoutY="143.0" prefWidth="150.0" />
             <Label fx:id="lblContrsena" layoutX="273.0" layoutY="192.0" text="Contraseña" />
             <TextField fx:id="txtContrasena" layoutX="226.0" layoutY="221.0" />
+            <Button fx:id="btnCambio" layoutX="41.0" layoutY="36.0" mnemonicParsing="false" onAction="#irAlLogin" text="Log In" />
+            <Label fx:id="lblMensaje" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="87.0" layoutY="340.0" prefHeight="18.0" prefWidth="425.0" text="mensaje" textAlignment="CENTER" wrapText="true" />
          </children>
       </Pane>
    </children>
