@@ -46,15 +46,11 @@ public class RegisterController {
         String carrera = cmbCarrera.getValue();
         String password = txtContrasena.getText();
 
-        // Ocultar el mensaje antes de validar
-
-
-        // Validación de campos vacíos
         if (carnet.isEmpty() || carrera == null || password.isEmpty()) {
             lblMensaje.setWrapText(true);
             lblMensaje.setText("Debe llenar todos los campos.");
             lblMensaje.setStyle("-fx-text-fill: red;");
-            txtCarnet.clear(); // solo limpiar carnet
+            txtCarnet.clear();
             return;
         }
 
