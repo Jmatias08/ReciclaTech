@@ -73,4 +73,30 @@ public class AgregarPreguntaController {
 
         limpiarCampos();
     }
+
+    private void limpiarCampos() {
+        txtPregunta.clear();
+        txtOpcion1.clear();
+        txtOpcion2.clear();
+        txtOpcion3.clear();
+        txtOpcion4.clear();
+        choiceCorrecta.setValue(null);
+        choiceDificultad.setValue(null);
+    }
+
+    @FXML
+    private void irACuestionario() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/proyecto/reciclatech/view/CuestionarioView.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnCancelar.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Cuestionario ReciclaTech");
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
