@@ -153,4 +153,35 @@ public class CuestionarioController {
         indiceActual++;
         mostrarPregunta();
     }
-     }
+    @FXML
+    private void irAAgregar() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/proyecto/reciclatech/view/AgregarPreguntaView.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnAgregar.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Agregar Pregunta");
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            lblMensaje.setText("Error al cargar la ventana de Agregar.");
+        }
+    }
+
+    @FXML
+    private void irABasura() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/proyecto/reciclatech/view/BasuraView.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnBasura.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Clasificador ReciclaTech");
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            lblMensaje.setText("Error al cargar la ventana de Basura.");
+        }
+    }
+}
