@@ -79,4 +79,66 @@ public class BasuraController {
 
         txtNombreResiduo.clear();
     }
+
+    private void irAlLogin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/proyecto/reciclatech/view/LoginView.fxml"));
+            Parent root = loader.load();
+
+            // Limpiar sesión
+            Session.getInstancia().setUsuario(null);
+
+            Stage stage = (Stage) btnCambio.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Login ReciclaTech");
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            lblMensaje.setText("Error al cargar la ventana de login.");
+        }
+    }
+
+    @FXML
+    private void irACuestionario() {
+        if (usuarioActual == null) {
+            lblMensaje.setVisible(true);
+            lblMensaje.setText("Usuario no definido. Inicie sesión.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/proyecto/reciclatech/view/CuestionarioView.fxml"));
+            Parent root = loader.load();
+
+            // Pasar datos al controlador
+            CuestionarioController controlador = loader.getController();
+            controlador.setDatosUsuario(usuarioActual.getCarnet(), usuarioActual.getCarrera());
+
+            Stage stage = (Stage) btnCuestionario.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Cuestionario ReciclaTech");
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            lblMensaje.setText("Error al cargar la ventana de cuestionario.");
+        }
+    }
+
+    @FXML
+    private void irARanking() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/proyecto/reciclatech/view/RankingView.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnRanking.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Ranking ReciclaTech");
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            lblMensaje.setText("Error al cargar la ventana de ranking.");
+        }
+    }
 }
