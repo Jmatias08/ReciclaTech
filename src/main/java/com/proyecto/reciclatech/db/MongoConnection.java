@@ -63,7 +63,7 @@ public class MongoConnection {
         }
     }
 
-    // Método para cerrar la conexión (opcional)
+    // Método para cerrar la conexión
     public static void close() {
         if (mongoClient != null) {
             mongoClient.close();

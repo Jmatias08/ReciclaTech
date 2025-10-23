@@ -17,7 +17,7 @@ public class UsuarioService {
         MongoDatabase db = MongoConnection.getDatabase("ReciclaTech");
         this.collection = db.getCollection("usuarios");
 
-        // Crear índice único en carnet si no existe
+        // Crear índice unico en carnet si no existe
         IndexOptions indexOptions = new IndexOptions().unique(true);
         collection.createIndex(new Document("carnet", 1), indexOptions);
     }
