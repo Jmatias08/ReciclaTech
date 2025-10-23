@@ -66,4 +66,21 @@ public class RankingController {
         public String getCarrera() { return carrera; }
         public int getPuntos() { return puntos; }
     }
+    @FXML
+    private void irABasura(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/proyecto/reciclatech/view/BasuraView.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) tablaRanking.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Clasificador ReciclaTech");
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }
