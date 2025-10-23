@@ -66,6 +66,7 @@ public class RankingController {
         public String getCarrera() { return carrera; }
         public int getPuntos() { return puntos; }
     }
+
     @FXML
     private void irABasura(ActionEvent event) {
         try {
