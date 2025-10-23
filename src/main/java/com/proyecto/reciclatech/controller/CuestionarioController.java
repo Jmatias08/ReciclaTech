@@ -1,4 +1,4 @@
 package com.proyecto.reciclatech.controller;
 
-public class CuestionarioController     {
+public class CuestionarioController {
 }
