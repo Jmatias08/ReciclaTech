@@ -1,6 +1,4 @@
-package com.proyecto.reciclatech.session;
-
-import com.proyecto.reciclatech.model.Usuario;
+package com.proyecto.reciclatech.model;
 
 public class Session {
     private static Session instancia;
