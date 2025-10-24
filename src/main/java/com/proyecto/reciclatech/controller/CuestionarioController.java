@@ -4,7 +4,7 @@ import com.proyecto.reciclatech.model.Pregunta;
 import com.proyecto.reciclatech.model.Usuario;
 import com.proyecto.reciclatech.service.CuestionarioService;
 import com.proyecto.reciclatech.service.PuntajeService;
-import com.proyecto.reciclatech.session.Session;
+import com.proyecto.reciclatech.model.Session;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
