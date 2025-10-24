@@ -1,28 +1,25 @@
-package com.proyecto.reciclatech.model;
+package com.proyecto.reciclatech.session;
 
-public class Usuario {
-    private String id;
-    private String carnet;
-    private String carrera;
-    private String password;
+import com.proyecto.reciclatech.model.Usuario;
 
-    public Usuario() {}
+public class Session {
+    private static Session instancia;
+    private Usuario usuario;
 
-    public Usuario(String carnet, String carrera, String password) {
-        this.carnet = carnet;
-        this.carrera = carrera;
-        this.password = password;
+    private Session() {}
+
+    public static Session getInstancia() {
+        if (instancia == null) {
+            instancia = new Session();
+        }
+        return instancia;
     }
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-    public String getCarnet() { return carnet; }
-    public void setCarnet(String carnet) { this.carnet = carnet; }
-
-    public String getCarrera() { return carrera; }
-    public void setCarrera(String carrera) { this.carrera = carrera; }
-
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public Usuario getUsuario() {
+        return usuario;
+    }
 }
