@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 
 public class IAClassifier {
 
-    private static final String GROQ_API_KEY = "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"; // 🔑 Reemplaza con tu key
+    private static final String GROQ_API_KEY = "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"; // 🔑 Reemplaza con tu key
 
     public static String clasificar(String nombreResiduo) {
         HttpURLConnection conn = null;
