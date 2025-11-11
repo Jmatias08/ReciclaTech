@@ -3,6 +3,10 @@ package com.proyecto.reciclatech.service;
 import com.proyecto.reciclatech.model.Basura;
 import com.proyecto.reciclatech.repository.BasuraRepository;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class BasuraService {
 
     private final BasuraRepository repository;
@@ -58,5 +62,43 @@ public class BasuraService {
         // Si no se pudo clasificar
         System.out.println("[Servicio] No se pudo clasificar el residuo: " + nombreFormateado);
         return null;
+    }
+
+    public List<Basura> obtenerTodas() {
+        return repository.obtenerTodos();
+    }
+
+    /**
+     * 🧮 Calcula puntos personales según la cantidad de residuos reciclados
+     */
+    public int calcularPuntos(List<Basura> lista) {
+        if (lista == null) return 0;
+        return lista.size() * 10; // Por ejemplo, 10 puntos por residuo
+    }
+
+    /**
+     * 📊 Conteo de residuos por categoría del usuario actual
+     */
+    public Map<String, Integer> obtenerConteoPorCategoria(String carnet) {
+        List<Basura> historial = repository.obtenerHistorialPorUsuario(carnet);
+        Map<String, Integer> conteo = new HashMap<>();
+
+        for (Basura b : historial) {
+            conteo.put(b.getCategoria(), conteo.getOrDefault(b.getCategoria(), 0) + 1);
+        }
+        return conteo;
+    }
+
+    /**
+     * 🌎 Conteo global de residuos por categoría (para el gráfico global)
+     */
+    public Map<String, Integer> obtenerConteoGlobal() {
+        List<Basura> todos = repository.obtenerTodos();
+        Map<String, Integer> conteo = new HashMap<>();
+
+        for (Basura b : todos) {
+            conteo.put(b.getCategoria(), conteo.getOrDefault(b.getCategoria(), 0) + 1);
+        }
+        return conteo;
     }
 }

@@ -27,7 +27,8 @@ public class UsuarioService {
         try {
             Document doc = new Document("carnet", usuario.getCarnet())
                     .append("carrera", usuario.getCarrera())
-                    .append("password", usuario.getPassword());
+                    .append("password", usuario.getPassword())
+                    .append("puntos", 0); // nuevo campo
             collection.insertOne(doc);
             System.out.println("[MongoDB] Usuario creado con carnet: " + usuario.getCarnet());
             return true;
@@ -42,7 +43,7 @@ public class UsuarioService {
         var usuarioExistente = collection.find(eq("carnet", carnetAntiguo)).first();
 
         if (usuarioExistente == null) {
-            System.out.println("[MongoDB] No se encontró usuario con carnet " + carnetAntiguo);
+            System.out.println("[MongoDB] No se encontró usuario con correo " + carnetAntiguo);
             return;
         }
 
@@ -50,7 +51,7 @@ public class UsuarioService {
         if (!carnetAntiguo.equals(usuarioActualizado.getCarnet())) {
             var carnetRepetido = collection.find(eq("carnet", usuarioActualizado.getCarnet())).first();
             if (carnetRepetido != null) {
-                System.out.println("[MongoDB] Error: el nuevo carnet " + usuarioActualizado.getCarnet() + " ya existe.");
+                System.out.println("[MongoDB] Error: el nuevo usuario " + usuarioActualizado.getCarnet() + " ya existe.");
                 return;
             }
         }
@@ -63,7 +64,7 @@ public class UsuarioService {
                         .append("password", usuarioActualizado.getPassword()))
         );
 
-        System.out.println("[MongoDB] Usuario con carnet " + carnetAntiguo + " modificado exitosamente.");
+        System.out.println("[MongoDB] Usuario con correo " + carnetAntiguo + " modificado exitosamente.");
     }
 
     // Buscar usuario por carnet
@@ -77,6 +78,7 @@ public class UsuarioService {
             );
             ObjectId id = doc.getObjectId("_id");
             if (id != null) u.setId(id.toHexString());
+            u.setPuntos(doc.getInteger("puntos", 0)); // cargar puntos
             return u;
         }
         return null;
