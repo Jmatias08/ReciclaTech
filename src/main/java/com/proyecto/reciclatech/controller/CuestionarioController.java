@@ -3,8 +3,9 @@ package com.proyecto.reciclatech.controller;
 import com.proyecto.reciclatech.model.Pregunta;
 import com.proyecto.reciclatech.model.Usuario;
 import com.proyecto.reciclatech.service.CuestionarioService;
-import com.proyecto.reciclatech.service.PuntajeService;
 import com.proyecto.reciclatech.model.Session;
+import com.proyecto.reciclatech.service.PuntajeService;
+import com.proyecto.reciclatech.service.PuntosService;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -12,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -28,6 +28,7 @@ public class CuestionarioController {
 
     private CuestionarioService service = new CuestionarioService();
     private PuntajeService puntajeService = new PuntajeService();
+    private PuntosService puntosService = new PuntosService();
 
     private List<Pregunta> preguntas;
     private int indiceActual = 0;
@@ -99,6 +100,7 @@ public class CuestionarioController {
             lblPuntos.setText("Puntaje final: " + puntaje);
 
             puntajeService.agregarPuntaje(usuarioActual, puntaje);
+            puntosService.sumarPuntos(usuarioActual.getCarnet(), puntaje);
 
             detenerTemporizador();
             return;
