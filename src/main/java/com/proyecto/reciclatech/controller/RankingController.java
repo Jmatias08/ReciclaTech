@@ -81,7 +81,4 @@ public class RankingController {
             e.printStackTrace();
         }
     }
-
-
-
 }
