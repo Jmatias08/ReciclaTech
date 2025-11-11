@@ -1,6 +1,7 @@
 package com.proyecto.reciclatech.controller;
 
 import com.proyecto.reciclatech.model.Basura;
+import com.proyecto.reciclatech.model.Historial;
 import com.proyecto.reciclatech.model.Usuario;
 import com.proyecto.reciclatech.service.BasuraService;
 import com.proyecto.reciclatech.model.Session;
@@ -72,6 +73,16 @@ public class BasuraController {
         if (basura != null) {
             lblResultado.setVisible(true);
             lblResultado.setText("Categoría: " + basura.getCategoria());
+
+            // ✅ Guardar en historial
+            if (usuarioActual != null) {
+                Historial historial = new Historial(
+                        usuarioActual.getCarnet(),
+                        basura.getNombre(),
+                        basura.getCategoria()
+                );
+                new com.proyecto.reciclatech.service.HistorialService().guardar(historial);
+            }
         } else {
             lblResultado.setVisible(true);
             lblResultado.setText("No se pudo clasificar el residuo.");
@@ -135,6 +146,22 @@ public class BasuraController {
             Stage stage = (Stage) btnRanking.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Ranking ReciclaTech");
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            lblMensaje.setText("Error al cargar la ventana de ranking.");
+        }
+    }
+
+    @FXML
+    private void irAEstadisticas() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/proyecto/reciclatech/view/DashboardView.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnRanking.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Estadisticas ReciclaTech");
             stage.centerOnScreen();
             stage.show();
         } catch (IOException e) {
