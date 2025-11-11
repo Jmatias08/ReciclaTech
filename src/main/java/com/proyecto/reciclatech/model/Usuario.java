@@ -5,6 +5,7 @@ public class Usuario {
     private String carnet;
     private String carrera;
     private String password;
+    private int puntos;
 
     public Usuario() {}
 
@@ -12,6 +13,7 @@ public class Usuario {
         this.carnet = carnet;
         this.carrera = carrera;
         this.password = password;
+        this.puntos = 0;
     }
 
     public String getId() { return id; }
@@ -25,4 +27,7 @@ public class Usuario {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    public int getPuntos() { return puntos; }
+    public void setPuntos(int puntos) { this.puntos = puntos; }
 }
