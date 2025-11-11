@@ -5,7 +5,7 @@ public class Usuario {
     private String carnet;
     private String carrera;
     private String password;
-    private int puntos;
+    private int puntos; // 👈 nuevo campo
 
     public Usuario() {}
 
