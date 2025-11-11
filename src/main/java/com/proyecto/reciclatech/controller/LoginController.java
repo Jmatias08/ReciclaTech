@@ -2,7 +2,7 @@ package com.proyecto.reciclatech.controller;
 
 import com.proyecto.reciclatech.model.Usuario;
 import com.proyecto.reciclatech.service.UsuarioService;
-import com.proyecto.reciclatech.session.Session;
+import com.proyecto.reciclatech.model.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

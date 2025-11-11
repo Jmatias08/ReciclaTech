@@ -3,7 +3,7 @@ package com.proyecto.reciclatech.controller;
 import com.proyecto.reciclatech.model.Basura;
 import com.proyecto.reciclatech.model.Usuario;
 import com.proyecto.reciclatech.service.BasuraService;
-import com.proyecto.reciclatech.session.Session;
+import com.proyecto.reciclatech.model.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,6 +80,7 @@ public class BasuraController {
         txtNombreResiduo.clear();
     }
 
+    @FXML
     private void irAlLogin() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/proyecto/reciclatech/view/LoginView.fxml"));
