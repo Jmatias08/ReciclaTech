@@ -54,11 +54,27 @@ public class RegisterController {
             return;
         }
 
+        // *** NUEVA VALIDACIÓN ***
+        if (!carnet.endsWith("@uvg.edu.gt")) {
+            lblMensaje.setWrapText(true);
+            lblMensaje.setText("El carnet debe terminar en @uvg.edu.gt");
+            lblMensaje.setStyle("-fx-text-fill: red;");
+            txtCarnet.clear();
+            return;
+        }
+
+        if (password.length() < 5) {
+            lblMensaje.setWrapText(true);
+            lblMensaje.setText("La contraseña debe tener al menos 5 caracteres.");
+            lblMensaje.setStyle("-fx-text-fill: red;");
+            txtContrasena.clear();
+            return;
+        }
+
         Usuario usuario = new Usuario(carnet, carrera, password);
         boolean creado = usuarioService.crearUsuario(usuario);
 
         if (creado) {
-            // No mostrar mensaje, solo limpiar campos
             lblMensaje.setWrapText(true);
             lblMensaje.setText("Usuario creado");
             lblMensaje.setStyle("-fx-text-fill: blue;");
@@ -67,11 +83,11 @@ public class RegisterController {
             cmbCarrera.setValue(null);
         } else {
             lblMensaje.setWrapText(true);
-            lblMensaje.setText("Error: el carnet ya está registrado.");
+            lblMensaje.setText("Error: el correo ya está registrado.");
             lblMensaje.setStyle("-fx-text-fill: red;");
-            txtCarnet.clear(); // solo limpiar carnet
         }
     }
+
 
 
     @FXML

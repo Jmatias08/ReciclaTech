@@ -5,17 +5,20 @@ import com.proyecto.reciclatech.model.Session;
 import com.proyecto.reciclatech.model.Usuario;
 import com.proyecto.reciclatech.repository.HistorialRepository;
 import com.proyecto.reciclatech.service.PuntosService;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -43,9 +46,61 @@ public class DashboardController {
         colResiduo.setCellValueFactory(new PropertyValueFactory<>("nombreResiduo"));
         colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        lblMensaje.setVisible(false);
 
-        cargarDatos();
+        configurarEjes(graficoGeneral);
+        cargarDatos();        // PRIMERO
+        aplicarEstilos();     // LUEGO
     }
+
+
+    private void aplicarEstilos() {
+        Platform.runLater(() -> {
+
+            // ===== Estilos para ambos gráficos =====
+            BarChart[] charts = { graficoPersonal, graficoGeneral };
+
+            for (BarChart chart : charts) {
+
+                // Etiquetas del eje X
+                chart.getXAxis().lookupAll(".tick-label").forEach(label ->
+                        label.setStyle("-fx-fill: white; -fx-font-size: 12px;")
+                );
+
+                // Título del eje X
+                if (chart.getXAxis().lookup(".axis-label") != null) {
+                    chart.getXAxis().lookup(".axis-label")
+                            .setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+                }
+
+                // Etiquetas del eje Y
+                chart.getYAxis().lookupAll(".tick-label").forEach(label ->
+                        label.setStyle("-fx-fill: white; -fx-font-size: 12px;")
+                );
+
+                // Título del eje Y
+                if (chart.getYAxis().lookup(".axis-label") != null) {
+                    chart.getYAxis().lookup(".axis-label")
+                            .setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+                }
+            }
+        });
+    }
+
+    private void configurarEjes(BarChart<String, Number> grafico) {
+
+        CategoryAxis x = (CategoryAxis) grafico.getXAxis();
+        x.setTickLabelRotation(0);
+        x.setTickLabelGap(10);
+        x.setStartMargin(20);
+        x.setEndMargin(20);
+        x.setAnimated(false);
+        x.setAutoRanging(true);
+
+        grafico.getYAxis().setAnimated(false);
+    }
+
+
 
     private void cargarDatos() {
         Usuario usuarioActual = Session.getInstancia().getUsuario();
@@ -54,8 +109,12 @@ public class DashboardController {
         int puntos = puntosService.obtenerPuntos(usuarioActual.getCarnet());
         lblPuntos.setText("Puntos: " + puntos);
 
-        // 🔹 Historial personal
         List<Historial> historialPersonal = historialRepo.obtenerPorCarnet(usuarioActual.getCarnet());
+
+        historialPersonal.sort(
+                (h1, h2) -> h2.getFecha().compareTo(h1.getFecha())   // DESCENDENTE
+        );
+
         tablaHistorial.getItems().setAll(historialPersonal);
 
         // 🔹 Graficos de conteo
@@ -74,9 +133,17 @@ public class DashboardController {
     private void actualizarGrafico(BarChart<String, Number> grafico, Map<String, Long> datos) {
         grafico.getData().clear();
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        datos.forEach((categoria, cantidad) -> series.getData().add(new XYChart.Data<>(categoria, cantidad)));
+        datos.forEach((categoria, cantidad) -> {
+
+            // 🔥 Limitar etiqueta a 5 letras
+            String etiqueta = categoria.length() > 10 ? categoria.substring(0, 10) : categoria;
+
+            series.getData().add(new XYChart.Data<>(etiqueta, cantidad));
+        });
+
         grafico.getData().add(series);
     }
+
 
     @FXML
     private void irABasura() {

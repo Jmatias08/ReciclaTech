@@ -44,7 +44,7 @@
                     </Label>
                     <BarChart fx:id="graficoPersonal" prefHeight="236.0" prefWidth="334.0">
                         <xAxis>
-                            <CategoryAxis label="Categoría" />
+                            <CategoryAxis label="Categoría" tickLabelFill="WHITE" />
                         </xAxis>
                         <yAxis>
                             <NumberAxis label="Cantidad" tickLabelFill="#faf8e8">
@@ -64,10 +64,10 @@
                     </Label>
                     <BarChart fx:id="graficoGeneral" prefHeight="228.0" prefWidth="340.0">
                         <xAxis>
-                            <CategoryAxis label="Categoría" />
+                            <CategoryAxis label="Categoría" tickLabelFill="WHITE" />
                         </xAxis>
                         <yAxis>
-                            <NumberAxis label="Cantidad" tickLabelFill="#faf8e8">
+                            <NumberAxis label="Cantidad" tickLabelFill="WHITE">
                         <tickLabelFont>
                            <Font size="12.0" />
                         </tickLabelFont></NumberAxis>
@@ -104,7 +104,7 @@
                          <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                  </Label>
-            <ImageView fitHeight="120.0" fitWidth="117.0" layoutX="681.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="120.0" fitWidth="117.0" layoutX="693.0" layoutY="491.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/mundo.png" />
                </image>
@@ -129,7 +129,7 @@
                   <Image url="@../images/caja%20de%20carton.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="177.0" fitWidth="181.0" layoutX="285.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="177.0" fitWidth="181.0" layoutX="295.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/trofeo.png" />
                </image>

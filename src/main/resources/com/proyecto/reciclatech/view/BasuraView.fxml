@@ -65,7 +65,7 @@
                   <Image url="@../images/image-removebg-preview%20(29).png" />
                </image>
             </ImageView>
-            <Button fx:id="btnEstadisticas" layoutX="248.0" layoutY="36.0" mnemonicParsing="false" onAction="#irAEstadisticas" style="-fx-background-color: #faf8e8;" text="Estadisticas" textFill="#30302c">
+            <Button fx:id="btnEstadisticas" layoutX="269.0" layoutY="36.0" mnemonicParsing="false" onAction="#irAEstadisticas" style="-fx-background-color: #faf8e8;" text="Estadisticas" textFill="#30302c">
                <font>
                   <Font name="Berlin Sans FB" size="16.0" />
                </font>
